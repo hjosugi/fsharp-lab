@@ -5,9 +5,9 @@
   <ItemGroup>
     <ProjectReference Include="../../src/FSharpLab.Domain/FSharpLab.Domain.fsproj" />
     <ProjectReference Include="../../src/FSharpLab.Application/FSharpLab.Application.fsproj" />
+    <ProjectReference Include="../../src/FSharpLab.Infrastructure/FSharpLab.Infrastructure.fsproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.fs" />
   </ItemGroup>
 </Project>
-

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1 - 2026-07-10
+
+- Redact card tokens from console payment logs
+- Add a regression test around the infrastructure credential boundary
+- Document safe credential handling for adapters
+
 ## 1.0.0 - 2026-07-10
 
 Initial release.

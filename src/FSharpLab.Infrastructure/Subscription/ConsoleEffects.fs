@@ -15,11 +15,10 @@ module ConsoleEffects =
     let create () =
         let payment: PaymentGateway = {
             Charge =
-                fun card amount ->
+                fun _ amount ->
                     async {
                         printfn
-                            "Charging card %s: %.2f"
-                            (CardToken.value card)
+                            "Charging card [redacted]: %.2f"
                             (Money.value amount)
 
                         return
