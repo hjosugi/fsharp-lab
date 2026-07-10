@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../FSharpLab.Domain/FSharpLab.Domain.fsproj" />
+    <ProjectReference Include="../FSharpLab.Application/FSharpLab.Application.fsproj" />
+    <ProjectReference Include="../FSharpLab.Infrastructure/FSharpLab.Infrastructure.fsproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+</Project>
+

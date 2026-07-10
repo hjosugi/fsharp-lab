@@ -1,0 +1,12 @@
+{
+  "editor.formatOnSave": true,
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "FSharp.enableTreeView": true,
+  "FSharp.lineLens.enabled": "replaceCodeLens",
+  "FSharp.inlayHints.parameterNames": true,
+  "FSharp.inlayHints.typeAnnotations": true,
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nil"
+}
+

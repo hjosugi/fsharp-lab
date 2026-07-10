@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../FSharpLab.Domain/FSharpLab.Domain.fsproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Subscription/Ports.fs" />
+    <Compile Include="Subscription/UpgradeSubscription.fs" />
+  </ItemGroup>
+</Project>
+

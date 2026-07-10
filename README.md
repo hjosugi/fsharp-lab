@@ -47,7 +47,7 @@ just basics
 | Explain | 2分で「なぜこの型にしたか」を説明する |
 | Transfer | SubscriptionではなくParkingドメインで同じ考えを再実装する |
 
-進捗管理は[12週間ロードマップ](docs/00-learning-path.md)を使います。
+進捗管理は[16週間ロードマップ](docs/00-learning-path.md)を使います。
 
 ## 完成サンプル
 

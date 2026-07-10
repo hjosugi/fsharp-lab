@@ -1,0 +1,10 @@
+bin/
+obj/
+.ionide/
+.fake/
+.direnv/
+result
+*.user
+*.suo
+.DS_Store
+

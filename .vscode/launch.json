@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "F# Lab CLI",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "F# Lab: check",
+      "program": "${workspaceFolder}/src/FSharpLab.Cli/bin/Debug/net10.0/FSharpLab.Cli.dll",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+  ]
+}
+

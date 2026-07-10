@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../FSharpLab.Domain/FSharpLab.Domain.fsproj" />
+    <ProjectReference Include="../FSharpLab.Application/FSharpLab.Application.fsproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Subscription/InMemory.fs" />
+    <Compile Include="Subscription/ConsoleEffects.fs" />
+  </ItemGroup>
+</Project>
+

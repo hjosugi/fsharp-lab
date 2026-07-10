@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "Ionide.Ionide-fsharp",
+    "ms-dotnettools.csharp",
+    "jnoortheen.nix-ide"
+  ]
+}
+

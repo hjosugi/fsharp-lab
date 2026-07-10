@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FSharpLab.Domain/FSharpLab.Domain.fsproj" />
+    <Project Path="src/FSharpLab.Application/FSharpLab.Application.fsproj" />
+    <Project Path="src/FSharpLab.Infrastructure/FSharpLab.Infrastructure.fsproj" />
+    <Project Path="src/FSharpLab.Cli/FSharpLab.Cli.fsproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/FSharpLab.Tests/FSharpLab.Tests.fsproj" />
+  </Folder>
+</Solution>
+
