@@ -24,6 +24,7 @@
               dotnet-sdk_10
               git
               just
+              nil
               nodejs_24
             ];
 
