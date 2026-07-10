@@ -4,7 +4,7 @@ open System
 
 [<RequireQualifiedAccess>]
 module Upgrade =
-    let private calculateProrataDays today renewalDate =
+    let private calculateProrataDays (today: DateOnly) (renewalDate: DateOnly) =
         max 0 (renewalDate.DayNumber - today.DayNumber)
 
     let private upgradeFee currentPlan requestedPlan =
@@ -32,4 +32,3 @@ module Upgrade =
             }
 
             UpgradeDecision.UpgradeAllowed change
-
