@@ -1,8 +1,10 @@
 module FSharpLab.Tests.Program
 
 open System
+open System.IO
 open FSharpLab.Application.Subscription
 open FSharpLab.Domain.Subscription
+open FSharpLab.Infrastructure.Subscription
 
 let mutable private failures: string list = []
 
@@ -88,6 +90,33 @@ let main _ =
         match TransactionId.create Guid.Empty with
         | Error TransactionIdError.Empty -> ()
         | other -> failwithf "Expected TransactionIdError.Empty but got %A" other)
+
+    test "Console payment adapter redacts card tokens" (fun () ->
+        let card = CardToken.create "tok_do_not_log" |> orFail
+        let amount = Money.create 25m |> orFail
+        let originalOutput = Console.Out
+        use capturedOutput = new StringWriter()
+
+        try
+            Console.SetOut capturedOutput
+
+            let result =
+                (ConsoleEffects.create ()).Payment.Charge card amount
+                |> Async.RunSynchronously
+
+            match result with
+            | Ok _ -> ()
+            | Error error -> failwithf "Expected payment success but got %A" error
+        finally
+            Console.SetOut originalOutput
+
+        let message = capturedOutput.ToString()
+
+        if message.Contains(CardToken.value card, StringComparison.Ordinal) then
+            failwith "Console output exposed the raw card token"
+
+        if not (message.Contains("[redacted]", StringComparison.Ordinal)) then
+            failwithf "Expected a redaction marker but got %s" message)
 
     test "Upgrade deriver returns a complete change" (fun () ->
         let customer = makeCustomer 0m
