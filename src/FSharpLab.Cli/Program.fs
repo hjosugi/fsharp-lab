@@ -42,7 +42,7 @@ let main _ =
         Today = fun () -> DateOnly(2026, 7, 10)
     }
 
-    let upgrade = UpgradeSubscription.create dependencies
+    let upgrade = UpgradeSubscriptionController.create dependencies
 
     let outcome =
         upgrade {
@@ -63,4 +63,3 @@ let main _ =
     | other ->
         eprintfn "Upgrade did not complete: %A" other
         1
-

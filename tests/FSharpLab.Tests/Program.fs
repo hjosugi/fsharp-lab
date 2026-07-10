@@ -140,7 +140,7 @@ let main _ =
         }
 
         let outcome =
-            UpgradeSubscription.create dependencies {
+            UpgradeSubscriptionController.create dependencies {
                 CustomerId = customerId
                 RequestedPlan = PlanLevel.Premium
             }
@@ -181,7 +181,7 @@ let main _ =
         }
 
         let outcome =
-            UpgradeSubscription.create dependencies {
+            UpgradeSubscriptionController.create dependencies {
                 CustomerId = customerId
                 RequestedPlan = PlanLevel.Premium
             }
@@ -225,7 +225,7 @@ let main _ =
         }
 
         let outcome =
-            UpgradeSubscription.create dependencies {
+            UpgradeSubscriptionController.create dependencies {
                 CustomerId = customerId
                 RequestedPlan = PlanLevel.Premium
             }

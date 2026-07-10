@@ -3,7 +3,7 @@ namespace FSharpLab.Application.Subscription
 open FSharpLab.Domain.Subscription
 
 [<RequireQualifiedAccess>]
-module UpgradeSubscription =
+module UpgradeSubscriptionController =
     let create dependencies: UpgradeSubscription =
         fun request ->
             async {
@@ -56,4 +56,3 @@ module UpgradeSubscription =
 
                                 return UpgradeOutcome.Succeeded(change, transactionId)
             }
-
