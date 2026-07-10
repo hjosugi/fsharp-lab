@@ -20,7 +20,7 @@ let private equal expected actual =
 
 let private orFail = function
     | Ok value -> value
-    | Error error -> failwith error
+    | Error error -> failwithf "%A" error
 
 let private customerId =
     Guid.Parse "7f018f8a-aeda-4628-aeb4-9ee6895b9114"
@@ -66,8 +66,28 @@ let private baseDependencies customer subscription = {
 let main _ =
     test "Money rejects a negative amount" (fun () ->
         match Money.create -0.01m with
-        | Error _ -> ()
+        | Error(MoneyError.NegativeAmount amount) -> equal -0.01m amount
         | Ok _ -> failwith "Negative money was accepted")
+
+    test "CustomerId rejects an empty GUID" (fun () ->
+        match CustomerId.create Guid.Empty with
+        | Error CustomerIdError.Empty -> ()
+        | other -> failwithf "Expected CustomerIdError.Empty but got %A" other)
+
+    test "CustomerId parse returns a typed format error" (fun () ->
+        match CustomerId.parse "not-a-guid" with
+        | Error(CustomerIdError.InvalidFormat "not-a-guid") -> ()
+        | other -> failwithf "Expected InvalidFormat but got %A" other)
+
+    test "CardToken rejects whitespace" (fun () ->
+        match CardToken.create "  " with
+        | Error CardTokenError.Blank -> ()
+        | other -> failwithf "Expected CardTokenError.Blank but got %A" other)
+
+    test "TransactionId rejects an empty GUID" (fun () ->
+        match TransactionId.create Guid.Empty with
+        | Error TransactionIdError.Empty -> ()
+        | other -> failwithf "Expected TransactionIdError.Empty but got %A" other)
 
     test "Upgrade deriver returns a complete change" (fun () ->
         let customer = makeCustomer 0m
@@ -111,6 +131,102 @@ let main _ =
         match Upgrade.derive (DateOnly(2026, 7, 10)) PlanLevel.Standard subscription customer with
         | UpgradeDecision.PlanIsNotHigher(PlanLevel.Premium, PlanLevel.Standard) -> ()
         | other -> failwithf "Expected PlanIsNotHigher but got %A" other)
+
+    test "Prorata days never become negative" (fun () ->
+        let customer = makeCustomer 0m
+
+        let subscription =
+            makeSubscription SubscriptionStatus.Active PlanLevel.Basic
+
+        match Upgrade.derive (DateOnly(2027, 1, 1)) PlanLevel.Standard subscription customer with
+        | UpgradeDecision.UpgradeAllowed change -> equal 0 change.ProrataDays
+        | other -> failwithf "Expected an allowed upgrade but got %A" other)
+
+    test "Missing customer stops before subscription lookup and payment" (fun () ->
+        let customer = makeCustomer 0m
+
+        let subscription =
+            makeSubscription SubscriptionStatus.Active PlanLevel.Basic
+
+        let mutable subscriptionLookupCount = 0
+        let mutable paymentCount = 0
+        let defaults = baseDependencies customer subscription
+
+        let dependencies = {
+            defaults with
+                Customers = {
+                    GetById = fun _ -> async { return None }
+                }
+                Subscriptions = {
+                    defaults.Subscriptions with
+                        GetByCustomerId =
+                            fun _ ->
+                                async {
+                                    subscriptionLookupCount <- subscriptionLookupCount + 1
+                                    return Some subscription
+                                }
+                }
+                Payment = {
+                    Charge =
+                        fun _ _ ->
+                            async {
+                                paymentCount <- paymentCount + 1
+                                return Ok transactionId
+                            }
+                }
+        }
+
+        let outcome =
+            UpgradeSubscriptionController.create dependencies {
+                CustomerId = customerId
+                RequestedPlan = PlanLevel.Premium
+            }
+            |> Async.RunSynchronously
+
+        match outcome with
+        | UpgradeOutcome.CustomerNotFound missingId -> equal customerId missingId
+        | other -> failwithf "Expected CustomerNotFound but got %A" other
+
+        equal 0 subscriptionLookupCount
+        equal 0 paymentCount)
+
+    test "Missing subscription stops before payment" (fun () ->
+        let customer = makeCustomer 0m
+
+        let subscription =
+            makeSubscription SubscriptionStatus.Active PlanLevel.Basic
+
+        let mutable paymentCount = 0
+        let defaults = baseDependencies customer subscription
+
+        let dependencies = {
+            defaults with
+                Subscriptions = {
+                    defaults.Subscriptions with
+                        GetByCustomerId = fun _ -> async { return None }
+                }
+                Payment = {
+                    Charge =
+                        fun _ _ ->
+                            async {
+                                paymentCount <- paymentCount + 1
+                                return Ok transactionId
+                            }
+                }
+        }
+
+        let outcome =
+            UpgradeSubscriptionController.create dependencies {
+                CustomerId = customerId
+                RequestedPlan = PlanLevel.Premium
+            }
+            |> Async.RunSynchronously
+
+        match outcome with
+        | UpgradeOutcome.SubscriptionNotFound missingId -> equal customerId missingId
+        | other -> failwithf "Expected SubscriptionNotFound but got %A" other
+
+        equal 0 paymentCount)
 
     test "Controller sends a reminder only for the overdrawn outcome" (fun () ->
         let customer = makeCustomer 20m
@@ -207,7 +323,11 @@ let main _ =
         let dependencies = {
             defaults with
                 Payment = {
-                    Charge = fun _ _ -> async { return Error "declined" }
+                    Charge =
+                        fun _ _ ->
+                            async {
+                                return Error(PaymentError.Declined "declined")
+                            }
                 }
                 Subscriptions = {
                     defaults.Subscriptions with
@@ -232,7 +352,7 @@ let main _ =
             |> Async.RunSynchronously
 
         match outcome with
-        | UpgradeOutcome.PaymentFailed "declined" -> ()
+        | UpgradeOutcome.PaymentFailed(PaymentError.Declined "declined") -> ()
         | other -> failwithf "Expected PaymentFailed but got %A" other
 
         equal 0 saveCount

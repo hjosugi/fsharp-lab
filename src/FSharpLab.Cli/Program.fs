@@ -7,7 +7,7 @@ open FSharpLab.Infrastructure.Subscription
 
 let private orFail = function
     | Ok value -> value
-    | Error error -> invalidOp error
+    | Error error -> invalidOp (sprintf "%A" error)
 
 [<EntryPoint>]
 let main _ =
