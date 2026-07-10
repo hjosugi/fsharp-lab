@@ -25,7 +25,7 @@ module ConsoleEffects =
                         return
                             match TransactionId.create (Guid.NewGuid()) with
                             | Ok transactionId -> Ok transactionId
-                            | Error error -> invalidOp error
+                            | Error error -> invalidOp (sprintf "%A" error)
                     }
         }
 

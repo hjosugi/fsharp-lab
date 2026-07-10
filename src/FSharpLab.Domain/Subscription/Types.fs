@@ -2,22 +2,31 @@ namespace FSharpLab.Domain.Subscription
 
 open System
 
+[<RequireQualifiedAccess>]
+type CustomerIdError =
+    | Empty
+    | InvalidFormat of input: string
+
 type CustomerId = private CustomerId of Guid
 
 [<RequireQualifiedAccess>]
 module CustomerId =
     let create value =
         if value = Guid.Empty then
-            Error "CustomerId must not be empty."
+            Error CustomerIdError.Empty
         else
             Ok(CustomerId value)
 
     let parse (text: string) =
         match Guid.TryParse text with
         | true, value -> create value
-        | false, _ -> Error "CustomerId must be a valid GUID."
+        | false, _ -> Error(CustomerIdError.InvalidFormat text)
 
     let value (CustomerId value) = value
+
+[<RequireQualifiedAccess>]
+type MoneyError =
+    | NegativeAmount of value: decimal
 
 type Money = private Money of decimal
 
@@ -25,7 +34,7 @@ type Money = private Money of decimal
 module Money =
     let create value =
         if value < 0m then
-            Error "Money must not be negative."
+            Error(MoneyError.NegativeAmount value)
         else
             Ok(Money value)
 
@@ -33,13 +42,17 @@ module Money =
     let value (Money value) = value
     let isZero money = value money = 0m
 
+[<RequireQualifiedAccess>]
+type CardTokenError =
+    | Blank
+
 type CardToken = private CardToken of string
 
 [<RequireQualifiedAccess>]
 module CardToken =
     let create (value: string) =
         if String.IsNullOrWhiteSpace value then
-            Error "CardToken must not be blank."
+            Error CardTokenError.Blank
         else
             Ok(CardToken value)
 
@@ -90,4 +103,3 @@ type UpgradeDecision =
     | AccountOverdrawn of balanceOwing: Money
     | InvalidSubscriptionStatus of current: SubscriptionStatus
     | PlanIsNotHigher of current: PlanLevel * requested: PlanLevel
-
