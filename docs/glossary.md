@@ -1,3 +1,6 @@
+<!-- i18n: language-switcher -->
+[English](glossary.md) | [日本語](glossary.ja.md)
+
 # Glossary
 
 | Term | Meaning in this lab |

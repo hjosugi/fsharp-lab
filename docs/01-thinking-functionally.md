@@ -1,3 +1,6 @@
+<!-- i18n: language-switcher -->
+[English](01-thinking-functionally.md) | [日本語](01-thinking-functionally.ja.md)
+
 # Thinking functionally
 
 ## 覚える軸

@@ -1,3 +1,6 @@
+<!-- i18n: language-switcher -->
+[English](06-scott-wlaschin-map.md) | [日本語](06-scott-wlaschin-map.ja.md)
+
 # Scott Wlaschin学習マップ
 
 GitHubの全公開リポジトリを確認し、学習価値で分類しています。古いruntimeを対象にしたrepositoryは、そのままbuildするより概念を現行.NETへ再実装します。

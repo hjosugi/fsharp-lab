@@ -1,3 +1,6 @@
+<!-- i18n: language-switcher -->
+[English](05-architecture.md) | [日本語](05-architecture.ja.md)
+
 # Architecture and tradeoffs
 
 ## Dependency direction

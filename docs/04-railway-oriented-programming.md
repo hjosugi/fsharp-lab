@@ -1,3 +1,6 @@
+<!-- i18n: language-switcher -->
+[English](04-railway-oriented-programming.md) | [日本語](04-railway-oriented-programming.ja.md)
+
 # Railway Oriented Programming
 
 Railway Oriented Programmingは、成功/失敗するfunctionを直線的なpipelineに合成する考え方です。
