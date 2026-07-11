@@ -1,3 +1,6 @@
+<!-- i18n: language-switcher -->
+[English](07-output-rubric.en.md) | [日本語](07-output-rubric.md)
+
 # Output rubric
 
 各Moduleを0〜3で自己評価します。

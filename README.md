@@ -1,3 +1,6 @@
+<!-- i18n: language-switcher -->
+[English](README.md) | [日本語](README.ja.md)
+
 # F# Lab
 
 F#を「構文暗記」で終わらせず、Scott Wlaschinの考え方をInput、実装、説明、別ドメインへの再適用まで繰り返して身につける学習環境です。

@@ -1,3 +1,6 @@
+<!-- i18n: language-switcher -->
+[English](08-fable-elmish-track.md) | [日本語](08-fable-elmish-track.ja.md)
+
 # Fable / Elmish発展track
 
 Scott Wlaschinで学んだtypes、functions、workflowを、Zaid Ajajの教材でWeb applicationへ接続します。

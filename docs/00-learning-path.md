@@ -1,3 +1,6 @@
+<!-- i18n: language-switcher -->
+[English](00-learning-path.md) | [日本語](00-learning-path.ja.md)
+
 # 16週間ロードマップ
 
 週5日、1日60〜90分を想定します。速く終わってもRecallとTransferを省略しません。

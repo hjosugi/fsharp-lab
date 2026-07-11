@@ -1,3 +1,6 @@
+<!-- i18n: language-switcher -->
+[English](03-functional-core-imperative-shell.md) | [日本語](03-functional-core-imperative-shell.ja.md)
+
 # Functional Core / Imperative Shell
 
 このlabではAntmanの記事の用語を、F#とScott Wlaschinのworkflow設計へ接続します。

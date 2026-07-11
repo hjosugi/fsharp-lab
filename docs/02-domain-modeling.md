@@ -1,3 +1,6 @@
+<!-- i18n: language-switcher -->
+[English](02-domain-modeling.md) | [日本語](02-domain-modeling.ja.md)
+
 # Domain modeling with types
 
 ## 基本対応

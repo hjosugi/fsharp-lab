@@ -1,3 +1,6 @@
+<!-- i18n: language-switcher -->
+[English](README.en.md) | [日本語](README.md)
+
 # Parking bounded context challenge
 
 Subscription sampleを見ずに、同じ設計をParkingへ転用します。

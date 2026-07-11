@@ -1,3 +1,6 @@
+<!-- i18n: language-switcher -->
+[English](resource-study.md) | [日本語](resource-study.ja.md)
+
 # Resource study: TITLE
 
 Source: URL
