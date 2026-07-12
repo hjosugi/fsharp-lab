@@ -6,6 +6,6 @@
   <ItemGroup>
     <Compile Include="Subscription/InMemory.fs" />
     <Compile Include="Subscription/ConsoleEffects.fs" />
+    <Compile Include="Parking/InMemory.fs" />
   </ItemGroup>
 </Project>
-

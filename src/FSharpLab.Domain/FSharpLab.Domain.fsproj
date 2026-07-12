@@ -3,6 +3,7 @@
     <Compile Include="Subscription/Types.fs" />
     <Compile Include="Subscription/Invariants.fs" />
     <Compile Include="Subscription/Upgrade.fs" />
+    <Compile Include="Parking/Types.fs" />
+    <Compile Include="Parking/Workflow.fs" />
   </ItemGroup>
 </Project>
-
