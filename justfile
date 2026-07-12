@@ -21,6 +21,8 @@ basics:
 parking-solution:
     dotnet fsi labs/parking/Solution.fsx
 
+parking-elmish:
+    dotnet fsi labs/04-parking-elmish.fsx
+
 check: test
     @echo "All checks passed."
-

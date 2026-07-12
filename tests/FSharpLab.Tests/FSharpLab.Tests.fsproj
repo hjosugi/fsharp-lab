@@ -8,6 +8,7 @@
     <ProjectReference Include="../../src/FSharpLab.Infrastructure/FSharpLab.Infrastructure.fsproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParkingTests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 </Project>

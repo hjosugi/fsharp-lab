@@ -387,6 +387,8 @@ let main _ =
         equal 0 saveCount
         equal 0 invoiceCount)
 
+    ParkingTests.run ()
+
     if List.isEmpty failures then
         printfn "All tests passed."
         0

@@ -60,3 +60,13 @@ flowchart LR
 
 完了条件は、UI、protocol、application、domainの各型を混ぜず、境界mappingを説明できることです。
 
+実行可能なend-to-end outputは[`labs/04-parking-elmish.fsx`](../labs/04-parking-elmish.fsx)です。
+`Model/Msg/update`、`RemoteData`、record of async functions、business/network errorの分離、fake client、
+`Result`から`Msg`へのmappingを一つのdependency-free scriptで確認できます。
+
+```bash
+just parking-elmish
+```
+
+このscriptのDTOは意図的にdomain aggregateと別にしています。共有protocol typeはcompile-timeの接続を助けますが、
+authorization、idempotency、version negotiation、retry、backward compatibilityは別途HTTP/application境界で扱う必要があります。

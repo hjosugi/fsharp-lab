@@ -5,6 +5,7 @@
   <ItemGroup>
     <Compile Include="Subscription/Ports.fs" />
     <Compile Include="Subscription/UpgradeSubscription.fs" />
+    <Compile Include="Parking/Ports.fs" />
+    <Compile Include="Parking/Commands.fs" />
   </ItemGroup>
 </Project>
-

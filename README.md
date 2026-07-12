@@ -91,6 +91,7 @@ docs/                         読書順、理解基準、設計メモ
 | `just test` | DomainとControllerのtestを実行 |
 | `just run` | 完成サンプルを実行 |
 | `just parking-solution` | Parking課題の解答例を実行 |
+| `just parking-elmish` | ParkingのElmish + typed API end-to-end flowを実行 |
 | `just check` | buildとtestをまとめて実行 |
 
 ## 技術基準
@@ -104,5 +105,9 @@ docs/                         読書順、理解基準、設計メモ
 - Linux、macOS、NixOS、WSL上のNixを対象
 
 Scott Wlaschinのcoreを終えた後は、[Fable/Elmish発展track](docs/08-fable-elmish-track.md)でZaid Ajajの教材へ進みます。
+
+Parkingへの独力転用で使う設計資料とproduction trade-offは
+[Parking bounded context capstone](docs/09-parking-capstone.md)にまとめています。実行可能なcapstoneは
+`src/FSharpLab.Domain/Parking`、`src/FSharpLab.Application/Parking`、`src/FSharpLab.Infrastructure/Parking`にあります。
 
 まず[Module 0](docs/00-learning-path.md)を開始してください。
